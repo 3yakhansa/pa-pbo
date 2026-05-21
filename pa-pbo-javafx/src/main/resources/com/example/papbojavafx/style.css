@@ -1,0 +1,293 @@
+.root {
+
+    -fx-background-color:
+            linear-gradient(to bottom right,
+            #0f172a,
+            #1e293b);
+}
+
+.auth-box {
+
+    -fx-background-color: #111827;
+
+    -fx-background-radius: 24;
+
+    -fx-effect:
+            dropshadow(
+                    gaussian,
+                    rgba(0,0,0,0.4),
+                    25,
+                    0.2,
+                    0,
+                    8
+            );
+}
+
+.big-cat {
+
+    -fx-font-size: 50px;
+}
+
+.title {
+
+    -fx-text-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.subtitle {
+
+    -fx-text-fill: #9ca3af;
+    -fx-font-size: 13px;
+}
+
+.input {
+
+    -fx-background-color: #1f2937;
+
+    -fx-text-fill: white;
+
+    -fx-prompt-text-fill: #9ca3af;
+
+    -fx-background-radius: 12;
+
+    -fx-padding: 12;
+
+    -fx-pref-width: 280;
+}
+
+.main-button {
+
+    -fx-background-color: #f59e0b;
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 15px;
+
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 12;
+
+    -fx-padding: 12 20 12 20;
+
+    -fx-pref-width: 280;
+
+    -fx-cursor: hand;
+}
+
+.main-button:hover {
+
+    -fx-background-color: #fbbf24;
+}
+
+.tab-button {
+
+    -fx-background-color: transparent;
+
+    -fx-text-fill: #9ca3af;
+
+    -fx-font-weight: bold;
+}
+
+.tab-active {
+
+    -fx-background-color: #374151;
+
+    -fx-text-fill: white;
+
+    -fx-background-radius: 10;
+}
+
+.message {
+
+    -fx-text-fill: #f87171;
+
+    -fx-font-size: 13px;
+}
+
+.header {
+
+    -fx-background-color: #111827;
+}
+
+.logo {
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 24px;
+
+    -fx-font-weight: bold;
+}
+
+.logout-button {
+
+    -fx-background-color: #ef4444;
+
+    -fx-text-fill: white;
+
+    -fx-background-radius: 10;
+}
+
+.hero-box {
+
+    -fx-background-color: #1f2937;
+
+    -fx-background-radius: 20;
+
+    -fx-padding: 25;
+
+    -fx-alignment: center;
+}
+
+.hero-cat {
+
+    -fx-font-size: 55px;
+}
+
+.hero-title {
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 26px;
+
+    -fx-font-weight: bold;
+}
+
+.hero-subtitle {
+
+    -fx-text-fill: #9ca3af;
+}
+
+.stat-card {
+
+    -fx-background-color: #111827;
+
+    -fx-background-radius: 16;
+
+    -fx-padding: 15;
+
+    -fx-alignment: center;
+}
+
+.stat-number {
+
+    -fx-font-size: 22px;
+
+    -fx-text-fill: #f59e0b;
+
+    -fx-font-weight: bold;
+}
+
+.nav-button {
+
+    -fx-background-color: #374151;
+
+    -fx-text-fill: white;
+
+    -fx-background-radius: 12;
+}
+
+.table-section {
+
+    -fx-background-color: #1f2937;
+
+    -fx-background-radius: 20;
+
+    -fx-padding: 20;
+}
+
+.form-card {
+
+    -fx-background-color: #1f2937;
+
+    -fx-background-radius: 20;
+
+    -fx-padding: 20;
+}
+
+.section-title {
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 20px;
+
+    -fx-font-weight: bold;
+}
+
+.edit-button {
+
+    -fx-background-color: #3b82f6;
+
+    -fx-text-fill: white;
+
+    -fx-background-radius: 10;
+}
+
+.delete-button {
+
+    -fx-background-color: #ef4444;
+
+    -fx-text-fill: white;
+
+    -fx-background-radius: 10;
+}
+
+.edit-button:hover {
+
+    -fx-background-color: #60a5fa;
+}
+
+.delete-button:hover {
+
+    -fx-background-color: #f87171;
+}
+.combo-box {
+    -fx-background-color: #111827;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #111827;
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #111827;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: #111827;
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #334155;
+}
+
+
+.date-picker {
+    -fx-background-color: #111827;
+    -fx-background-radius: 12;
+}
+
+.date-picker .text-field {
+    -fx-background-color: #111827;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #94a3b8;
+    -fx-background-radius: 12;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: #1e293b;
+    -fx-background-radius: 0 12 12 0;
+}
+
+.date-picker .arrow-button:hover {
+    -fx-background-color: #334155;
+}
+
+.date-picker .arrow {
+    -fx-background-color: white;
+}
+

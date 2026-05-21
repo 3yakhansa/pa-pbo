@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <?import javafx.geometry.Insets?>
+        <?import javafx.scene.control.*?>
+        <?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.papbojavafx.DashboardController"
+            styleClass="root">
+
+    <!-- ================= HEADER ================= -->
+
+    <top>
+
+        <HBox alignment="CENTER_LEFT"
+              spacing="20"
+              styleClass="header">
+
+            <padding>
+                <Insets top="15"
+                        right="20"
+                        bottom="15"
+                        left="20"/>
+            </padding>
+
+            <Label text="🐾 PawPatrol"
+                   styleClass="logo"/>
+
+            <Pane HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="lblUser"
+                   style="-fx-text-fill:white;
+                          -fx-font-size:14px;
+                          -fx-font-weight:bold;"/>
+
+            <Button text="👤 Logout"
+                    onAction="#handleLogout"
+                    styleClass="logout-button"/>
+
+
+        </HBox>
+
+    </top>
+
+    <!-- ================= CONTENT ================= -->
+
+    <center>
+
+        <ScrollPane fitToWidth="true"
+                    style="-fx-background:#0f172a;
+                           -fx-background-color:transparent;">
+
+            <content>
+
+                <VBox spacing="25">
+
+                    <!-- ================= HERO ================= -->
+
+                    <VBox spacing="10"
+                          styleClass="hero-box">
+
+                        <Label text="🐱"
+                               styleClass="hero-cat"/>
+
+                        <Label text="Selamat Datang di PawPatrol Shelter"
+                               styleClass="hero-title"/>
+
+                        <Label text="Temukan kucing berbulu yang menunggu rumah hangat 🐾"
+                               styleClass="hero-subtitle"/>
+
+                        <!-- ================= STATS ================= -->
+
+                        <HBox spacing="20"
+                              alignment="CENTER">
+
+                            <!-- TOTAL -->
+
+                            <VBox spacing="5"
+                                  styleClass="stat-card">
+
+                                <Label text="🐈 Total Kucing"
+                                       style="-fx-text-fill:white;"/>
+
+                                <Label fx:id="lblTotal"
+                                       text="0"
+                                       styleClass="stat-number"/>
+
+                            </VBox>
+
+                            <!-- TERSEDIA -->
+
+                            <VBox spacing="5"
+                                  styleClass="stat-card">
+
+                                <Label text="✅ Tersedia"
+                                       style="-fx-text-fill:white;"/>
+
+                                <Label fx:id="lblTersedia"
+                                       text="0"
+                                       styleClass="stat-number"/>
+
+                            </VBox>
+
+                            <!-- ADOPSI -->
+
+                            <VBox spacing="5"
+                                  styleClass="stat-card">
+
+                                <Label text="🤝 Diadopsi"
+                                       style="-fx-text-fill:white;"/>
+
+                                <Label fx:id="lblAdopsi"
+                                       text="0"
+                                       styleClass="stat-number"/>
+
+                            </VBox>
+
+                        </HBox>
+
+                    </VBox>
+
+                    <!-- ================= NAVIGATION ================= -->
+
+                    <HBox spacing="15"
+                          alignment="CENTER">
+
+                        <Button text="🐈 Data Kucing"
+                                onAction="#showDataSection"
+                                styleClass="nav-button"/>
+
+                        <Button text="➕ Tambah Kucing"
+                                onAction="#showTambahSection"
+                                styleClass="nav-button"/>
+
+                        <Button text="🤝 Adopsi"
+                                onAction="#showTambahSection"
+                                styleClass="nav-button"/>
+
+                    </HBox>
+
+                    <!-- ================= DATA KUCING ================= -->
+
+                    <VBox spacing="15"
+                          styleClass="table-section">
+
+                        <Label text="🐈 Daftar Kucing"
+                               styleClass="section-title"/>
+
+                        <TableView fx:id="tableKucing"
+                                   prefHeight="400">
+
+                            <columns>
+
+                                <TableColumn fx:id="colId"
+                                             text="ID"
+                                             prefWidth="60"/>
+
+                                <TableColumn fx:id="colNama"
+                                             text="Nama"
+                                             prefWidth="140"/>
+
+                                <TableColumn fx:id="colRas"
+                                             text="Ras"
+                                             prefWidth="140"/>
+
+                                <TableColumn fx:id="colUsia"
+                                             text="Usia"
+                                             prefWidth="100"/>
+
+                                <TableColumn fx:id="colWarna"
+                                             text="Warna"
+                                             prefWidth="120"/>
+
+                                <TableColumn fx:id="colStatus"
+                                             text="Status"
+                                             prefWidth="120"/>
+
+                                <TableColumn fx:id="colAksi"
+                                             text="Aksi"
+                                             prefWidth="220"/>
+
+                            </columns>
+
+                        </TableView>
+
+                    </VBox>
+
+                    <!-- ================= FORM TAMBAH ================= -->
+
+                    <VBox spacing="15"
+                          styleClass="form-card">
+
+                        <Label text="➕ Tambah Kucing"
+                               styleClass="section-title"/>
+
+                        <TextField fx:id="txtNama"
+                                   promptText="Nama Kucing"
+                                   styleClass="input"/>
+
+                        <TextField fx:id="txtWarna"
+                                   promptText="Warna Kucing"
+                                   styleClass="input"/>
+
+                        <TextField fx:id="txtUsia"
+                                   promptText="Usia (bulan)"
+                                   styleClass="input"/>
+
+                        <ComboBox fx:id="cbJenis"
+                                  promptText="Pilih Jenis"
+                                  styleClass="input"/>
+
+                        <CheckBox fx:id="checkVaksin"
+                                  text="Sudah vaksin"
+                                  style="-fx-text-fill:white;
+                                         -fx-font-size:14px;"/>
+
+                        <Button text="✅ Simpan Kucing"
+                                onAction="#handleTambahKucing"
+                                styleClass="main-button"/>
+
+                    </VBox>
+
+                    <!-- ================= ADOPSI ================= -->
+
+                    <VBox spacing="15"
+                          styleClass="form-card">
+
+                        <Label text="🤝 Buat Adopsi"
+                               styleClass="section-title"/>
+
+                        <ComboBox fx:id="cbKucingAdopsi"
+                                  promptText="Pilih Kucing Tersedia"
+                                  styleClass="input"/>
+
+                        <TextField fx:id="txtNamaAdopsi"
+                                   promptText="Nama Pengadopsi"
+                                   styleClass="input"/>
+
+                        <TextField fx:id="txtHpAdopsi"
+                                   promptText="08xxxxxxxxxx"
+                                   styleClass="input"/>
+
+
+                        <Label text="Tanggal Adopsi"
+                               style="-fx-text-fill:white;
+              -fx-font-size:14px;"/>
+
+                        <DatePicker fx:id="dpTanggalAdopsi"
+                                    promptText="Pilih tanggal adopsi"/>
+
+                        <Label text="Tanggal Keluar Shelter"
+                               style="-fx-text-fill:white;
+              -fx-font-size:14px;"/>
+
+                        <DatePicker fx:id="dpTanggalKeluar"
+                                    promptText="Pilih tanggal keluar"/>
+
+
+
+                        <Button text="🐾 Proses Adopsi"
+                                onAction="#handleAdopsi"
+                                styleClass="main-button"/>
+
+                    </VBox>
+
+                    <!-- ================= RIWAYAT ADOPSI ================= -->
+
+                    <VBox spacing="15"
+                          styleClass="table-section">
+
+                        <Label text="📋 Riwayat Adopsi"
+                               styleClass="section-title"/>
+
+                        <TableView fx:id="tableAdopsi"
+                                   prefHeight="300">
+
+                            <columns>
+
+                                <TableColumn fx:id="colNamaKucing"
+                                             text="Kucing"
+                                             prefWidth="160"/>
+
+                                <TableColumn fx:id="colPengadopsi"
+                                             text="Pengadopsi"
+                                             prefWidth="180"/>
+
+                                <TableColumn fx:id="colTanggalAdopsi"
+                                             text="Tanggal Adopsi"
+                                             prefWidth="150"/>
+
+                                <TableColumn fx:id="colTanggalKeluar"
+                                             text="Tanggal Keluar"
+                                             prefWidth="150"/>
+
+                            </columns>
+
+                        </TableView>
+
+                    </VBox>
+
+                    <padding>
+                        <Insets top="20"
+                                right="20"
+                                bottom="20"
+                                left="20"/>
+                    </padding>
+
+                </VBox>
+
+            </content>
+
+        </ScrollPane>
+
+    </center>
+
+</BorderPane>
