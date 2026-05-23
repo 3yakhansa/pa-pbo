@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.papbojavafx.DashboardController"
+            styleClass="root">
+
+    <!-- ===== HEADER ===== -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header">
+            <padding><Insets top="14" right="24" bottom="14" left="24"/></padding>
+
+            <Label text="🐾 PawPatrol" styleClass="logo"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="lblUser"
+                   style="-fx-text-fill:#fde8c0;-fx-font-size:14px;-fx-font-weight:bold;"/>
+
+            <Button text="🚪 Logout" onAction="#handleLogout" styleClass="logout-button"/>
+        </HBox>
+    </top>
+
+    <!-- ===== CONTENT ===== -->
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+            <content>
+                <VBox spacing="24">
+                    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+                    <!-- HERO + STATS -->
+                    <VBox spacing="12" styleClass="hero-box" alignment="CENTER">
+                        <Label text="🐱" styleClass="hero-cat"/>
+                        <Label text="Selamat Datang di PawPatrol Shelter" styleClass="hero-title"/>
+                        <Label text="Temukan kucing berbulu yang menunggu rumah hangat 🐾"
+                               styleClass="hero-subtitle"/>
+
+                        <HBox spacing="20" alignment="CENTER">
+                            <VBox spacing="5" styleClass="stat-card" alignment="CENTER">
+                                <Label text="🐈 Total Kucing" styleClass="stat-label"/>
+                                <Label fx:id="lblTotal" text="0" styleClass="stat-number"/>
+                            </VBox>
+                            <VBox spacing="5" styleClass="stat-card" alignment="CENTER">
+                                <Label text="✅ Tersedia" styleClass="stat-label"/>
+                                <Label fx:id="lblTersedia" text="0" styleClass="stat-number"/>
+                            </VBox>
+                            <VBox spacing="5" styleClass="stat-card" alignment="CENTER">
+                                <Label text="🤝 Diadopsi" styleClass="stat-label"/>
+                                <Label fx:id="lblAdopsi" text="0" styleClass="stat-number"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- NAVIGASI INTERAKTIF -->
+                    <HBox spacing="12" alignment="CENTER">
+                        <Button fx:id="btnNavData"    text="🐈 Data Kucing"
+                                onAction="#showDataSection"    styleClass="nav-button-active"/>
+                        <Button fx:id="btnNavTambah"  text="➕ Tambah Kucing"
+                                onAction="#showTambahSection"  styleClass="nav-button"/>
+                        <Button fx:id="btnNavAdopsi"  text="🤝 Adopsi"
+                                onAction="#showAdopsiSection"  styleClass="nav-button"/>
+                        <Button fx:id="btnNavRiwayat" text="📋 Riwayat Adopsi"
+                                onAction="#showRiwayatSection" styleClass="nav-button"/>
+                    </HBox>
+
+                    <!-- TABEL KUCING -->
+                    <VBox fx:id="sectionData" spacing="12" styleClass="table-section">
+                        <Label text="🐈 Daftar Kucing" styleClass="section-title"/>
+
+                        <TableView fx:id="tableKucing" prefHeight="360">
+                            <columns>
+                                <TableColumn fx:id="colId"     text="ID"        prefWidth="50"/>
+                                <TableColumn fx:id="colNama"   text="Nama"      prefWidth="110"/>
+                                <TableColumn fx:id="colRas"    text="Ras"       prefWidth="110"/>
+                                <TableColumn fx:id="colJenis"  text="Jenis"     prefWidth="90"/>
+                                <TableColumn fx:id="colUsia"   text="Usia"      prefWidth="70"/>
+                                <TableColumn fx:id="colWarna"  text="Warna"     prefWidth="90"/>
+                                <TableColumn fx:id="colVaksin" text="Vaksin"    prefWidth="80"/>
+                                <TableColumn fx:id="colBiaya"  text="Biaya/Bln" prefWidth="100"/>
+                                <TableColumn fx:id="colStatus" text="Status"    prefWidth="100"/>
+                                <TableColumn fx:id="colAksi"   text="Aksi"      prefWidth="200"/>
+                            </columns>
+                            <placeholder>
+                                <Label text="Belum ada data kucing."
+                                       style="-fx-text-fill:#6b4226;-fx-font-size:14px;-fx-font-weight:bold;"/>
+                            </placeholder>
+                        </TableView>
+                    </VBox>
+
+                    <!-- FORM TAMBAH KUCING -->
+                    <VBox fx:id="sectionTambah" spacing="14" styleClass="form-card"
+                          visible="false" managed="false">
+                        <Label text="➕ Tambah Kucing" styleClass="section-title"/>
+
+                        <HBox spacing="14">
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Nama Kucing" styleClass="form-label"/>
+                                <TextField fx:id="txtNama" promptText="Nama Kucing"
+                                           styleClass="input" maxWidth="Infinity"/>
+                            </VBox>
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Warna Kucing" styleClass="form-label"/>
+                                <TextField fx:id="txtWarna" promptText="Warna Kucing"
+                                           styleClass="input" maxWidth="Infinity"/>
+                            </VBox>
+                        </HBox>
+
+                        <HBox spacing="14">
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Usia (bulan)" styleClass="form-label"/>
+                                <TextField fx:id="txtUsia" promptText="Usia (bulan)"
+                                           styleClass="input" maxWidth="Infinity"/>
+                            </VBox>
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Jenis Kucing" styleClass="form-label"/>
+                                <ComboBox fx:id="cbJenis" promptText="Pilih Jenis"
+                                          styleClass="input" maxWidth="Infinity"/>
+                            </VBox>
+                        </HBox>
+
+                        <VBox fx:id="vboxRasLangka" spacing="6" visible="false" managed="false">
+                            <Label text="Ras Kucing Langka" styleClass="form-label"/>
+                            <ComboBox fx:id="cbRasLangka" promptText="Pilih Ras Kucing Langka"
+                                      styleClass="input" maxWidth="Infinity"/>
+                        </VBox>
+
+                        <HBox spacing="14">
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Status Vaksinasi" styleClass="form-label"/>
+                                <ComboBox fx:id="cbVaksin" promptText="Pilih Status Vaksin"
+                                          styleClass="input" maxWidth="Infinity"/>
+                            </VBox>
+                        </HBox>
+
+                        <Button text="✅ Simpan Kucing" onAction="#handleTambahKucing"
+                                styleClass="main-button"/>
+                    </VBox>
+
+                    <!-- FORM EDIT KUCING -->
+                    <VBox fx:id="sectionEdit" spacing="14" styleClass="form-card"
+                          visible="false" managed="false">
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+                            <Label text="✏️ Edit Kucing" styleClass="section-title" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+
+                        <HBox spacing="14">
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Nama Kucing" styleClass="form-label"/>
+                                <TextField fx:id="txtEditNama" promptText="Nama Kucing"
+                                           styleClass="input" maxWidth="Infinity"/>
+                            </VBox>
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Warna Kucing" styleClass="form-label"/>
+                                <TextField fx:id="txtEditWarna" promptText="Warna Kucing"
+                                           styleClass="input" maxWidth="Infinity"/>
+                            </VBox>
+                        </HBox>
+
+                        <HBox spacing="14">
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Usia (bulan)" styleClass="form-label"/>
+                                <TextField fx:id="txtEditUsia" promptText="Usia (bulan)"
+                                           styleClass="input" maxWidth="Infinity"/>
+                            </VBox>
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Jenis Kucing" styleClass="form-label"/>
+                                <ComboBox fx:id="cbEditJenis" promptText="Pilih Jenis"
+                                          styleClass="input" maxWidth="Infinity"/>
+                            </VBox>
+                        </HBox>
+
+                        <VBox fx:id="vboxEditRasLangka" spacing="6" visible="false" managed="false">
+                            <Label text="Ras Kucing Langka" styleClass="form-label"/>
+                            <ComboBox fx:id="cbEditRasLangka" promptText="Pilih Ras Kucing Langka"
+                                      styleClass="input" maxWidth="Infinity"/>
+                        </VBox>
+
+                        <HBox spacing="14">
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Status Vaksinasi" styleClass="form-label"/>
+                                <ComboBox fx:id="cbEditVaksin" promptText="Pilih Status Vaksin"
+                                          styleClass="input" maxWidth="Infinity"/>
+                            </VBox>
+                        </HBox>
+
+                        <HBox spacing="12">
+                            <Button text="💾 Simpan Perubahan" onAction="#handleSimpanEdit"
+                                    styleClass="main-button"/>
+                            <Button text="✖ Batal" onAction="#handleBatalEdit"
+                                    style="-fx-background-color:#374151;-fx-text-fill:#f3f4f6;
+                                           -fx-background-radius:12;-fx-padding:12 20;
+                                           -fx-font-weight:bold;-fx-cursor:hand;-fx-font-size:14px;"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- FORM ADOPSI -->
+                    <VBox fx:id="sectionAdopsi" spacing="14" styleClass="form-card"
+                          visible="false" managed="false">
+                        <Label text="🤝 Buat Adopsi" styleClass="section-title"/>
+
+                        <VBox spacing="6">
+                            <Label text="Pilih Kucing" styleClass="form-label"/>
+                            <ComboBox fx:id="cbKucingAdopsi" promptText="Pilih Kucing Tersedia"
+                                      styleClass="input" maxWidth="Infinity"/>
+                        </VBox>
+
+                        <HBox spacing="14">
+                            <TextField fx:id="txtNamaAdopsi" promptText="Nama Pengadopsi"
+                                       styleClass="input" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="txtHpAdopsi"   promptText="08xxxxxxxxxx"
+                                       styleClass="input" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+
+                        <HBox spacing="14" alignment="CENTER_LEFT">
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Tanggal Adopsi" styleClass="form-label"/>
+                                <DatePicker fx:id="dpTanggalAdopsi"
+                                            promptText="Pilih tanggal adopsi"
+                                            styleClass="date-picker"/>
+                            </VBox>
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Tanggal Keluar Shelter" styleClass="form-label"/>
+                                <DatePicker fx:id="dpTanggalKeluar"
+                                            promptText="Pilih tanggal keluar"
+                                            styleClass="date-picker"/>
+                            </VBox>
+                        </HBox>
+
+                        <Button text="🐾 Proses Adopsi" onAction="#handleAdopsi"
+                                styleClass="main-button"/>
+                    </VBox>
+
+                    <!-- RIWAYAT ADOPSI -->
+                    <VBox fx:id="sectionRiwayat" spacing="12" styleClass="table-section"
+                          visible="false" managed="false">
+                        <Label text="📋 Riwayat Adopsi" styleClass="section-title"/>
+
+                        <TableView fx:id="tableAdopsi" prefHeight="280">
+                            <columns>
+                                <TableColumn fx:id="colNamaKucing"    text="Kucing"         prefWidth="160"/>
+                                <TableColumn fx:id="colPengadopsi"    text="Pengadopsi"     prefWidth="180"/>
+                                <TableColumn fx:id="colTanggalAdopsi" text="Tanggal Adopsi" prefWidth="150"/>
+                                <TableColumn fx:id="colTanggalKeluar" text="Tanggal Keluar" prefWidth="150"/>
+                            </columns>
+                            <placeholder>
+                                <Label text="Belum ada riwayat adopsi."
+                                       style="-fx-text-fill:#6b4226;-fx-font-size:14px;-fx-font-weight:bold;"/>
+                            </placeholder>
+                        </TableView>
+                    </VBox>
+
+                    <Pane prefHeight="16"/>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

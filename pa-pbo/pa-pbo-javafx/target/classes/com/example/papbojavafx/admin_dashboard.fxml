@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.papbojavafx.AdminDashboardController"
+            styleClass="root">
+
+    <!-- ===== HEADER ===== -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header">
+            <padding><Insets top="14" right="24" bottom="14" left="24"/></padding>
+
+            <Label text="🐾 PawPatrol" styleClass="logo"/>
+            <Label text="ADMIN PANEL"
+                   style="-fx-text-fill:#f59e0b;-fx-font-size:12px;
+                          -fx-font-weight:bold;-fx-padding:3 8 3 8;
+                          -fx-background-color:#1f2937;-fx-background-radius:6;"/>
+
+            <Pane HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="lblAdminName"
+                   style="-fx-text-fill:#fde8c0;-fx-font-size:14px;-fx-font-weight:bold;"/>
+
+            <Button text="🚪 Logout" onAction="#handleLogout" styleClass="logout-button"/>
+        </HBox>
+    </top>
+
+    <!-- ===== CONTENT ===== -->
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+            <content>
+                <VBox spacing="24">
+                    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+                    <!-- HERO -->
+                    <VBox spacing="8" styleClass="hero-box" alignment="CENTER">
+                        <Label text="👑" style="-fx-font-size:48px;"/>
+                        <Label text="Dashboard Administrator" styleClass="hero-title"/>
+                        <Label text="Kelola data staff shelter dengan mudah dan aman 🐾"
+                               styleClass="hero-subtitle"/>
+
+                        <!-- STAT -->
+                        <HBox spacing="20" alignment="CENTER">
+                            <VBox spacing="5" styleClass="stat-card" alignment="CENTER">
+                                <Label text="👥 Total Staff" styleClass="stat-label"/>
+                                <Label fx:id="lblTotalStaff" text="0" styleClass="stat-number"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- TABEL STAFF -->
+                    <VBox spacing="12" styleClass="table-section">
+                        <Label text="👥 Daftar Staff" styleClass="section-title"/>
+
+                        <TableView fx:id="tableStaff" prefHeight="320">
+                            <columns>
+                                <TableColumn fx:id="colNama"     text="Nama Lengkap"  prefWidth="220"/>
+                                <TableColumn fx:id="colUsername" text="Username"       prefWidth="180"/>
+                                <TableColumn fx:id="colPassword" text="Password"       prefWidth="180"/>
+                                <TableColumn fx:id="colAksi"     text="Aksi"           prefWidth="200"/>
+                            </columns>
+                            <placeholder>
+                                <Label text="Belum ada data staff."
+                                       style="-fx-text-fill:#6b4226;-fx-font-size:14px;-fx-font-weight:bold;"/>
+                            </placeholder>
+                        </TableView>
+                    </VBox>
+
+                    <!-- FORM STAFF -->
+                    <VBox spacing="14" styleClass="form-card">
+                        <Label fx:id="lblFormTitle" text="➕ Tambah Staff" styleClass="section-title"/>
+
+                        <HBox spacing="14">
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Nama Lengkap" styleClass="form-label"/>
+                                <TextField fx:id="txtNama" promptText="Nama Lengkap"
+                                           styleClass="input" maxWidth="Infinity"/>
+                            </VBox>
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Username" styleClass="form-label"/>
+                                <TextField fx:id="txtUsername" promptText="Username"
+                                           styleClass="input" maxWidth="Infinity"/>
+                            </VBox>
+                        </HBox>
+
+                        <VBox spacing="6">
+                            <Label text="Password" styleClass="form-label"/>
+                            <PasswordField fx:id="txtPassword" promptText="Password"
+                                           styleClass="input"/>
+                        </VBox>
+
+                        <HBox spacing="12">
+                            <Button fx:id="btnSimpan" text="✅ Simpan Staff"
+                                    onAction="#handleSimpan" styleClass="main-button"/>
+                            <Button text="✖ Batal" onAction="#handleBatalEdit"
+                                    style="-fx-background-color:#374151;-fx-text-fill:#f3f4f6;
+                                           -fx-background-radius:12;-fx-padding:12 20;
+                                           -fx-font-weight:bold;-fx-cursor:hand;-fx-font-size:14px;"/>
+                        </HBox>
+                    </VBox>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+
+</BorderPane>
